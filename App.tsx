@@ -9,6 +9,8 @@ import {
   Rajdhani_700Bold,
 } from "@expo-google-fonts/rajdhani";
 
+import { Background } from "./src/components/Background";
+
 // import { Singin } from "./src/screens/SingIn";
 import { Routes } from "./src/routes";
 
@@ -25,14 +27,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
+    <Background>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
       <Routes />
-    </>
+    </Background>
   );
 };
 

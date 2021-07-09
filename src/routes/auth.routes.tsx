@@ -3,6 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Home } from "../screens/Home";
 import { Singin } from "../screens/SingIn";
+import { Details } from "../screens/Details";
+import { Create } from "../screens/Create";
+
+import { global } from "../styles/global";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -12,12 +16,14 @@ export const Auth = () => {
       headerMode={"none"}
       screenOptions={{
         cardStyle: {
-          backgroundColor: "transparent",
+          backgroundColor: global.colors.secondary100,
         },
       }}
     >
       <Screen name="Singin" component={Singin} />
       <Screen name="Home" component={Home} />
+      <Screen name="Details" component={Details} />
+      <Screen name="Create" component={Create} />
     </Navigator>
   );
 };
