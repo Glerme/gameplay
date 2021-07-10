@@ -66,20 +66,20 @@ const Home: React.FC = () => {
         categorySelected={category}
         setCategory={handleCategorySelect}
       />
-      <View>
-        <ListHeader title="Partidas Agendadas" subtitle="Total 6" />
 
-        <FlatList
-          data={appointment}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <ListGames data={item} onPress={handleAppointmentDetails} />
-          )}
-          style={styles.matches}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={ListDivider}
-        />
-      </View>
+      <ListHeader title="Partidas Agendadas" subtitle="Total 6" />
+
+      <FlatList
+        data={appointment}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ListGames data={item} onPress={handleAppointmentDetails} />
+        )}
+        style={styles.matches}
+        contentContainerStyle={{ paddingBottom: 69 }}
+        showsVerticalScrollIndicator={false}
+        ItemSeparatorComponent={ListDivider}
+      />
     </Background>
   );
 };

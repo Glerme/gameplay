@@ -9,10 +9,11 @@ import {
   Rajdhani_700Bold,
 } from "@expo-google-fonts/rajdhani";
 
-import { Background } from "./src/components/Background";
+import { AuthProvider } from "./src/hooks/auth";
 
-// import { Singin } from "./src/screens/SingIn";
 import { Routes } from "./src/routes";
+
+import { Background } from "./src/components/Background";
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -33,7 +34,9 @@ const App: React.FC = () => {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </Background>
   );
 };

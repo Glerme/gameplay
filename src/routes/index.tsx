@@ -1,17 +1,18 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { Auth } from "./auth.routes";
+import { useAuth } from "../hooks/auth";
 
-import { Background } from "../../src/components/Background";
+import { AuthRoutes } from "./auth.routes";
+import { Singin } from "../screens/SingIn";
 
 const Routes: React.FC = () => {
+  const { user, loading } = useAuth();
+
   return (
-    <Background>
-      <NavigationContainer>
-        <Auth />
-      </NavigationContainer>
-    </Background>
+    <NavigationContainer>
+      {user.id ? <AuthRoutes /> : <Singin />}
+    </NavigationContainer>
   );
 };
 

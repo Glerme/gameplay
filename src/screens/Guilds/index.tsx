@@ -18,6 +18,36 @@ const Guilds: React.FC<IGuilds> = ({ handleGuildsSelected }) => {
       icon: "img.png",
       owner: true,
     },
+    {
+      id: "2",
+      name: "Lendários",
+      icon: "img.png",
+      owner: true,
+    },
+    {
+      id: "3",
+      name: "Lendários",
+      icon: "img.png",
+      owner: true,
+    },
+    {
+      id: "4",
+      name: "Lendários",
+      icon: "img.png",
+      owner: true,
+    },
+    {
+      id: "5",
+      name: "Lendários",
+      icon: "img.png",
+      owner: true,
+    },
+    {
+      id: "6",
+      name: "Lendários",
+      icon: "img.png",
+      owner: true,
+    },
   ];
 
   return (
@@ -29,9 +59,11 @@ const Guilds: React.FC<IGuilds> = ({ handleGuildsSelected }) => {
           renderItem={({ item }) => (
             <Guild data={item} onPress={() => handleGuildsSelected(item)} />
           )}
-          ItemSeparatorComponent={() => <ListDivider />}
+          ItemSeparatorComponent={() => <ListDivider isCentered />}
+          ListHeaderComponent={() => <ListDivider isCentered />}
           showsVerticalScrollIndicator={false}
           style={styles.guild}
+          contentContainerStyle={{ paddingBottom: 69, paddingTop: 69 }}
         />
       </View>
     </>

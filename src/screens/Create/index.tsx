@@ -6,7 +6,6 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
 
 import { Feather } from "@expo/vector-icons";
@@ -39,13 +38,17 @@ const Create: React.FC = () => {
     setOpenModal(false);
   }, []);
 
+  const handleCloseModal = useCallback(() => {
+    setOpenModal(false);
+  }, []);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <ScrollView>
-        <Background>
+      <Background>
+        <ScrollView>
           <Header title="Agendar Partida" />
 
           <Text
@@ -84,7 +87,9 @@ const Create: React.FC = () => {
 
             <View style={styles.field}>
               <View>
-                <Text style={styles.label}> Dia e mês </Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Dia e mês
+                </Text>
 
                 <View style={styles.colunm}>
                   <SmallInput maxLength={2} />
@@ -94,7 +99,9 @@ const Create: React.FC = () => {
               </View>
 
               <View>
-                <Text style={styles.label}> Horário </Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Horário
+                </Text>
 
                 <View style={styles.colunm}>
                   <SmallInput maxLength={2} />
@@ -120,10 +127,10 @@ const Create: React.FC = () => {
               <Button title="Agendar" />
             </View>
           </View>
-        </Background>
-      </ScrollView>
+        </ScrollView>
+      </Background>
 
-      <ModalView visible={openModal}>
+      <ModalView visible={openModal} closeModal={handleCloseModal}>
         <Guilds handleGuildsSelected={handleGuildSelect} />
       </ModalView>
     </KeyboardAvoidingView>
