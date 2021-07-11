@@ -27,7 +27,7 @@ interface IGuild extends TouchableOpacityProps {
 const Guild: React.FC<IGuild> = ({ data, ...rest }) => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.7} {...rest}>
-      <GuildIcon />
+      <GuildIcon guildId={data.id} iconId={data.icon} />
       <View style={styles.content}>
         <View>
           <Text style={styles.title}>{data.name}</Text>

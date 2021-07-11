@@ -6,7 +6,11 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+
 import { RectButton } from "react-native-gesture-handler";
+import { v4 } from "uuid";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Feather } from "@expo/vector-icons";
 import { GuildIcon } from "../../components/GuildIcon";
@@ -24,10 +28,20 @@ import { GuildData } from "../../components/Guild";
 import { styles } from "./styles";
 import { global } from "../../styles/global";
 
+import { COLLECTION_APPOINTMENT } from "../../configs/database";
+
 const Create: React.FC = () => {
   const [category, setCategory] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [guild, setGuild] = useState<GuildData>({} as GuildData);
+
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [hour, setHour] = useState("");
+  const [minute, setMinute] = useState("");
+  const [description, setDescription] = useState("");
+
+  const navigation = useNavigation();
 
   const handleOpenGuilds = useCallback(() => {
     setOpenModal(true);
@@ -40,6 +54,26 @@ const Create: React.FC = () => {
 
   const handleCloseModal = useCallback(() => {
     setOpenModal(false);
+  }, []);
+
+  const handleSave = useCallback(async () => {
+    const newAppointment = {
+      id: v4(),
+      guild,
+      category,
+      date: `${day}/${month} às ${hour}:${minute}`,
+      description,
+    };
+
+    const storage = await AsyncStorage.getItem(COLLECTION_APPOINTMENT);
+    const appointment = storage ? JSON.parse(storage) : [];
+
+    await AsyncStorage.setItem(
+      COLLECTION_APPOINTMENT,
+      JSON.stringify([...appointment, newAppointment])
+    );
+
+    navigation.navigate("Home");
   }, []);
 
   return (
@@ -69,7 +103,11 @@ const Create: React.FC = () => {
           <View style={styles.form}>
             <RectButton onPress={handleOpenGuilds}>
               <View style={styles.select}>
-                {guild.icon ? <GuildIcon /> : <View style={styles.image} />}
+                {guild.icon ? (
+                  <GuildIcon guildId={guild.id} iconId={guild.icon} />
+                ) : (
+                  <View style={styles.image} />
+                )}
 
                 <View style={styles.selectBody}>
                   <Text style={styles.label}>
@@ -92,9 +130,9 @@ const Create: React.FC = () => {
                 </Text>
 
                 <View style={styles.colunm}>
-                  <SmallInput maxLength={2} />
+                  <SmallInput maxLength={2} onChangeText={setDay} />
                   <Text style={styles.divider}> / </Text>
-                  <SmallInput maxLength={2} />
+                  <SmallInput maxLength={2} onChangeText={setMonth} />
                 </View>
               </View>
 
@@ -104,9 +142,9 @@ const Create: React.FC = () => {
                 </Text>
 
                 <View style={styles.colunm}>
-                  <SmallInput maxLength={2} />
+                  <SmallInput maxLength={2} onChangeText={setHour} />
                   <Text style={styles.divider}> : </Text>
-                  <SmallInput maxLength={2} />
+                  <SmallInput maxLength={2} onChangeText={setMinute} />
                 </View>
               </View>
             </View>
@@ -121,10 +159,11 @@ const Create: React.FC = () => {
               maxLength={100}
               numberOfLines={5}
               autoCorrect={false}
+              onChangeText={setDescription}
             />
 
             <View style={styles.footer}>
-              <Button title="Agendar" />
+              <Button title="Agendar" onPress={handleSave} />
             </View>
           </View>
         </ScrollView>

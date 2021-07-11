@@ -9,7 +9,7 @@ import { global } from "../styles/global";
 
 const { Navigator, Screen } = createStackNavigator();
 
-export const AuthRoutes = () => {
+export const AppRoutes = () => {
   return (
     <Navigator
       headerMode={"none"}

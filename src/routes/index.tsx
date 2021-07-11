@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { useAuth } from "../hooks/auth";
 
-import { AuthRoutes } from "./auth.routes";
+import { AppRoutes } from "./app.routes";
 import { Singin } from "../screens/SingIn";
 
 const Routes: React.FC = () => {
@@ -11,7 +11,7 @@ const Routes: React.FC = () => {
 
   return (
     <NavigationContainer>
-      {user.id ? <AuthRoutes /> : <Singin />}
+      {user.id ? <AppRoutes /> : <Singin />}
     </NavigationContainer>
   );
 };

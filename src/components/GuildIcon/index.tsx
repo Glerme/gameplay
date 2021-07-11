@@ -1,13 +1,28 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 
+const { CDN_IMAGE } = process.env;
+
+import DiscordSvg from "../../assets/discord.svg";
 import { styles } from "./styles";
 
-const GuildIcon: React.FC = ({ ...rest }) => {
-  const uri =
-    "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/91_Discord_logo_logos-512.png";
+interface IGuildIcon {
+  guildId: string;
+  iconId: string | null;
+}
 
-  return <Image source={{ uri }} style={styles.image} resizeMode="cover" />;
+const GuildIcon: React.FC<IGuildIcon> = ({ guildId, iconId, ...rest }) => {
+  const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`;
+
+  return (
+    <View style={styles.container}>
+      {iconId ? (
+        <Image source={{ uri }} style={styles.image} resizeMode="cover" />
+      ) : (
+        <DiscordSvg width={40} height={40} />
+      )}
+    </View>
+  );
 };
 
 export { GuildIcon };
