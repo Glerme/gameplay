@@ -16,14 +16,14 @@ export interface IMember {
 }
 
 const Member: React.FC<IMember> = ({ data }) => {
-  const isOnline = data.status === "online";
+  const isOnline = data?.status === "online";
 
   return (
     <View style={styles.container}>
-      <Avatar urlImage={data.avatarUrl} />
+      <Avatar urlImage={data?.avatarUrl} />
 
       <View>
-        <Text style={styles.title}>{data.username}</Text>
+        <Text style={styles.title}>{data?.username}</Text>
         <View style={styles.status}>
           <View
             style={[

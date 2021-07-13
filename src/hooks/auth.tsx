@@ -32,6 +32,7 @@ interface IUser {
 interface AuthContextData {
   user: IUser;
   singIn: () => Promise<void>;
+  singOut: () => Promise<void>;
   loading: boolean;
 }
 
@@ -86,6 +87,12 @@ const AuthProvider = ({ children }: Children) => {
     }
   };
 
+  const singOut = useCallback(async () => {
+    setUser({} as IUser);
+
+    await AsyncStorage.removeItem(COLLECTION_USER);
+  }, []);
+
   const loadUserStorageData = useCallback(async () => {
     const storage = await AsyncStorage.getItem(COLLECTION_USER);
 
@@ -103,7 +110,7 @@ const AuthProvider = ({ children }: Children) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, singIn, loading }}>
+    <AuthContext.Provider value={{ user, singIn, loading, singOut }}>
       {children}
     </AuthContext.Provider>
   );
