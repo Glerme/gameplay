@@ -104,7 +104,7 @@ const Details: React.FC = () => {
         <>
           <ListHeader
             title="Jogadores"
-            subtitle={`Total ${widget.members.length}`}
+            subtitle={`Total ${widget?.members?.length}`}
           />
 
           <FlatList
