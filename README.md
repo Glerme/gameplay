@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="dtMoney" title="dtMoney" src=".github/logo.svg" />
+  <img alt="dtMoney" title="dtMoney" src=".github/logo.png" />
 </h1>
 
 <p align="center">
@@ -19,8 +19,7 @@
 <br>
 
 <p align="center">
-  <img alt="Letmeask" src=".github/screen1.png" width="80%">
-  <img alt="Letmeask" src=".github/screen2.png" width="80%">
+  <img alt="Letmeask" src=".github/cover.png" width="80%">
 </p>
 
 <br/>
@@ -28,7 +27,7 @@
 
 ## 💻 Projeto
 
-O DtMoney é um app para realizar o gerenciamento de contas pessoais, mostrando as entradas e saídas de movimento financeiro pessoal.
+O Gameplay é um app para organizar partidas com seus amigos. Crie grupos para jogar seus games favoritos com seus amigos com esse App que possui autenticação com Discord.
 
 <br/>
 <br/>
@@ -38,14 +37,24 @@ O DtMoney é um app para realizar o gerenciamento de contas pessoais, mostrando 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React](https://reactjs.org)
+- [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Expo](https://expo.dev/)
+- [OAuth](https://oauth.net/)
+
+<br/>
+<br/>
+
+## 🔖 Layout
+
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/0kv33XYjvOgvKGKHBaiR07/GamePlay-NLW-Together?node-id=58913%3A83). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
 
 <br/>
 <br/>
 
 ## 🚀 Como executar
 
-- Você precisa instalar o [Node.js](https://nodejs.org/en/) e [Yarn](https://yarnpkg.com/) para executar este projeto.
+- Você precisa instalar o [Node.js](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/) e [Expo](https://expo.dev/) para executar este projeto.
 
 **Clone o projeto**
 
@@ -60,10 +69,18 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   yarn
 
   #Execute o projeto
-  yarn start
+  expo stat
 ```
 
-O aplicativo estará para acesso em seu navegador em: `http://localhost:3000`
+Lembre-se de criar o seu App no servidor do Discord para obter as credencias de autenticação. Em seguida, defina no arquivo .env as configurações do seu App (remova o example do arquivo .env.example).
+
+```bash
+REDIRECT_URI=
+SCOPE=
+RESPONSE_TYPE=
+CLIENT_ID=
+CDN_IMAGE=
+```
 
 <br/>
 <br/>
